@@ -1,27 +1,16 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --primary-color: #1282a2;
+  --secondary-color: #ff8600;
+  --text-color: #0a1128;
+  --background-color: #ffffff;
+  --input-bg: #fefcfb;
+  --border-color: #ddd;
+  --button-hover-primary: #cc6b00;
+  --button-hover-secondary: #0a6784;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 31, 84, 0.2);
+  --shadow-hover-primary: rgba(255, 134, 0, 0.3);
+  --shadow-hover-secondary: rgba(10, 103, 132, 0.5);
 }
 
 * {
@@ -30,13 +19,28 @@ body {
   margin: 0;
 }
 
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #f8f8f8;
+}
+
+body {
+  color: var(--foreground);
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 a {
   color: inherit;
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+  font-size: 20px;
 }
