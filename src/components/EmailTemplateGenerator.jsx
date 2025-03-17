@@ -6,6 +6,9 @@ export default function EmailTemplateGenerator() {
   const [variables, setVariables] = useState({});
   const [finalEmail, setFinalEmail] = useState("");
   const [notification, setNotification] = useState("");
+  const [emailSubject, setEmailSubject] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [buttonStyle, setButtonStyle] = useState("");
 
   useEffect(() => {
     const matches = template.match(/\${(.*?)}/g) || [];
@@ -36,12 +39,42 @@ export default function EmailTemplateGenerator() {
     navigator.clipboard.writeText(finalEmail);
     setNotification("Email copied to clipboard!");
 
-    setTimeout(() => setNotification(""), 5000);
+    setButtonStyle(styles.copyButtonSuccess);
+    setTimeout(() => {
+      setNotification("");
+      setButtonStyle("");
+    }, 5000);
   };
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Email Template Generator</h2>
+      <div className={styles.fixedInputContainer}>
+        <div className={styles.inputGroup}>
+          <label>
+            Email Subject:
+            <input
+              type="text"
+              className={styles.fixedInput}
+              placeholder="Enter Email Subject"
+              value={emailSubject}
+              onChange={(e) => setEmailSubject(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className={styles.inputGroup}>
+          <label>
+            Email Address:
+            <input
+              type="email"
+              className={styles.fixedInput}
+              placeholder="Enter Email Address"
+              value={emailAddress}
+              onChange={(e) => setEmailAddress(e.target.value)}
+            />
+          </label>
+        </div>
+      </div>
       <h3 className={styles.subtitle}>Email Template:</h3>
       <textarea
         className={styles.textarea}
@@ -68,14 +101,17 @@ export default function EmailTemplateGenerator() {
       <h3 className={styles.subtitle}>Email Preview:</h3>
       <textarea className={styles.emailPreview} value={finalEmail} readOnly />
       <div className={styles.buttonWrapper}>
-        <button onClick={copyToClipboard} className={styles.copyButton}>
-          Copy to Clipboard
+        <button
+          onClick={copyToClipboard}
+          className={`${styles.copyButton} ${buttonStyle}`}
+        >
+          {notification || "Copy to Clipboard"}
         </button>
         {notification && <p className={styles.notification}>{notification}</p>}
         <a
-          href={`mailto:?subject=Internship Inquiry&body=${encodeURIComponent(
-            finalEmail
-          )}`}
+          href={`mailto:?subject=${encodeURIComponent(
+            emailSubject
+          )}&body=${encodeURIComponent(finalEmail)}`}
           className={styles.emailButton}
         >
           Open Email Client

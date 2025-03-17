@@ -75,7 +75,7 @@
 }
 
 .emailPreview {
-  background: var(--input-bg);
+  background: var(--background-color);
   color: var(--text-color);
   white-space: pre-line;
   word-wrap: break-word;
@@ -83,20 +83,21 @@
   word-wrap: break-word;
   width: 100%;
   height: 250px;
-
   padding: 20px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  border: 2px solid var(--primary-color);
   font-size: 16px;
   font-weight: 500;
+  outline: none;
   line-height: 1.6;
+  transition: 0.3s ease-in-out;
   resize: vertical;
   box-shadow: var(--shadow-light);
 }
 
 .emailPreview:focus {
   border-color: var(--secondary-color);
-  box-shadow: 0 0 8px var(--shadow-hover-primary);
+  box-shadow: 0 0 10px var(--shadow-hover-primary);
 }
 
 .buttonWrapper {
@@ -124,6 +125,8 @@
 }
 
 .copyButton {
+  position: relative;
+  overflow: hidden;
   background: var(--secondary-color);
   color: var(--input-bg);
   border-color: var(--secondary-color);
@@ -150,16 +153,47 @@
 }
 
 .notification {
-  background: var(--text-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
   color: var(--input-bg);
-  padding: 14px;
-  text-align: center;
-  border-radius: 8px;
   font-size: 15px;
   font-weight: bold;
+  border-radius: inherit;
   box-shadow: 0 4px 10px var(--shadow-medium);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fixedInputContainer {
+  display: flex;
+  gap: 20px;
   margin-bottom: 15px;
-  animation: fadeIn 0.3s ease-in-out;
+}
+
+.fixedInput {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  font-size: 15px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  outline: none;
+  transition: 0.3s ease-in-out;
+}
+
+.fixedInput:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 10px var(--shadow-hover-primary);
 }
 
 @keyframes fadeIn {
